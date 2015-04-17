@@ -53,6 +53,7 @@ static void usage(const char* pname)
             "   -j: save the file as a jpeg.\n"
             "   -d: specify the display id to capture, default %d.\n"
             "If FILENAME ends with .png it will be saved as a png.\n"
+            "If FILENAME ends with .jpg/.jpeg it will be saved as a jpeg.\n"
             "If FILENAME is not given, the results will be printed to stdout.\n",
             pname, DEFAULT_DISPLAY_ID
     );
