@@ -96,6 +96,7 @@ PointerController::PointerController(const sp<PointerControllerPolicyInterface>&
     mLocked.displayWidth = -1;
     mLocked.displayHeight = -1;
     mLocked.displayOrientation = DISPLAY_ORIENTATION_0;
+    mLocked.displaySizeChanged = false;
 
     mLocked.presentation = PRESENTATION_POINTER;
     mLocked.presentationChanged = false;
@@ -114,15 +115,6 @@ PointerController::PointerController(const sp<PointerControllerPolicyInterface>&
     mLocked.lastFrameUpdatedTime = 0;
 
     mLocked.buttonState = 0;
-
-    mPolicy->loadPointerIcon(&mLocked.pointerIcon);
-
-    loadResources();
-
-    if (mLocked.pointerIcon.isValid()) {
-        mLocked.pointerIconChanged = true;
-        updatePointerLocked();
-    }
 }
 
 PointerController::~PointerController() {
@@ -385,6 +377,8 @@ void PointerController::setDisplayViewport(int32_t width, int32_t height, int32_
     }
 
     if (mLocked.displayWidth != width || mLocked.displayHeight != height) {
+        mLocked.displaySizeChanged = true;
+
         mLocked.displayWidth = width;
         mLocked.displayHeight = height;
 
@@ -618,6 +612,14 @@ void PointerController::removeInactivityTimeoutLocked() {
 
 void PointerController::updatePointerLocked() {
     mSpriteController->openTransaction();
+
+    if (mLocked.displaySizeChanged) {
+        mPolicy->loadPointerIcon(&mLocked.pointerIcon);
+        loadResources();
+
+        mLocked.presentationChanged = true;
+        mLocked.displaySizeChanged = false;
+    }
 
     mLocked.pointerSprite->setLayer(Sprite::BASE_LAYER_POINTER);
     mLocked.pointerSprite->setPosition(mLocked.pointerX, mLocked.pointerY);

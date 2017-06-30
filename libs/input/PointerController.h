@@ -160,6 +160,7 @@ private:
         int32_t displayWidth;
         int32_t displayHeight;
         int32_t displayOrientation;
+        bool displaySizeChanged;
 
         InactivityTimeout inactivityTimeout;
 
