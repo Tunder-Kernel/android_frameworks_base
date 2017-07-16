@@ -1233,6 +1233,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     break;
             }
         }
+    }
 
     class MyOrientationListener extends WindowOrientationListener {
         private final Runnable mUpdateRotationRunnable = new Runnable() {
