@@ -4671,6 +4671,13 @@ public static final String PHONE_BLACKLIST_REGEX_ENABLED = "phone_blacklist_rege
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
 
         /**
+         *
+         * @hide
+         */
+
+        public static final String QUICK_TILE_ADD = "quick_tile_add";
+
+        /**
          * Enable/Disable screenshot sound
          * @hide
          */
@@ -6101,6 +6108,12 @@ public static final String PHONE_BLACKLIST_REGEX_ENABLED = "phone_blacklist_rege
          * @hide
          */
         public static final String POCKET_JUDGE = "pocket_judge";
+
+        /**
+         * Sensor block per-package
+         * @hide
+         */
+        public static final String SENSOR_BLOCK = "sensor_block";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
